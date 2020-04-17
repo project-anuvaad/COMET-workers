@@ -22,10 +22,18 @@ module.exports = ({ RABBITMQ_SERVER, AUDIO_PROCESSOR_API_ROOT }) => {
         audioProcessorChannel.sendToQueue(queues.PROCESS_NOISECANCELLATIONVIDEO_AUDIO_QUEUE, new Buffer(JSON.stringify(identifier)), { persistent: true });
     }
     
-    function processRecordedAudioViaApi({ url, outputFormat }) {
+    function processRecordedAudioViaApi({ url, fileStream, outputFormat }) {
         return new Promise((resolve, reject) => {
-            superagent.post(`${AUDIO_PROCESSOR_API_ROOT}/process_audio`, { url, outputFormat })
-                .then((res) => {
+            let req;
+            if (url) {
+                req = superagent.post(`${AUDIO_PROCESSOR_API_ROOT}/process_audio`, { url, outputFormat })
+            } else if (fileStream) {
+                req = superagent.post(`${AUDIO_PROCESSOR_API_ROOT}/process_audio`)
+                .attach('file', fileStream)
+                .field('outputFormat', outputFormat);
+            }
+                
+            req.then((res) => {
                     resolve(res.body);
                 })
                 .catch(err => {
