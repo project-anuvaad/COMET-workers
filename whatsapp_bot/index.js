@@ -13,7 +13,7 @@ module.exports = (RABBITMQ_SERVER) => {
     });
 
     function whatsappNotifyUserVideoProofreadingReady({ videoId }) {
-        return rabbitmqChannel.sendToQueue(queues.WHATSAPP_NOTIFY_USER_VIDEO_PROOFREADING_READY, new Buffer(JSON.stringify(params)), { persistent: true });
+        return rabbitmqChannel.sendToQueue(queues.WHATSAPP_NOTIFY_USER_VIDEO_PROOFREADING_READY, new Buffer(JSON.stringify({ videoId })), { persistent: true });
     }
     
     return {
