@@ -42,7 +42,7 @@ module.exports = RABBITMQ_SERVER => {
     }
 
     function updateArticleSlideVideoSpeed({ articleId, videoSpeed, slidePosition, subslidePosition }) {
-        return rabbitmqChannel.sendToQueue(queues.UPDATE_ARTICLE_VIDEO_SPEED, new Buffer(JSON.stringify({ articleId, videoSpeed, slidePosition, subslidePosition })), { persistent: true });
+        return rabbitmqChannel.sendToQueue(queues.UPDATE_ARTICLE_SLIDE_VIDEO_SPEED, new Buffer(JSON.stringify({ articleId, videoSpeed, slidePosition, subslidePosition })), { persistent: true });
     }
 
     function burnTranslatedArticleVideoSubtitleAndSignlanguage(translationExportId) {
