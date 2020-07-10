@@ -41,9 +41,31 @@ module.exports = ({ RABBITMQ_SERVER, AUDIO_PROCESSOR_API_ROOT }) => {
                 })
         })
     }
+
+    function speedAudioViaApi({ url, fileStream, speed }) {
+        return new Promise((resolve, reject) => {
+            let req;
+            if (url) {
+                req = superagent.post(`${AUDIO_PROCESSOR_API_ROOT}/audioSpeed`, { url, speed })
+            } else if (fileStream) {
+                req = superagent.post(`${AUDIO_PROCESSOR_API_ROOT}/audioSpeed`)
+                .attach('file', fileStream)
+                .field('speed', speed);
+            }
+                
+            req.then((res) => {
+                    resolve(res.body);
+                })
+                .catch(err => {
+                    reject(err);
+                })
+        })
+    }
+    
     
     return {
         processRecordedAudioViaApi,
         processNoiseCancellationVideo,
+        speedAudioViaApi,
     }
 }
