@@ -1,17 +1,6 @@
-
-const rabbitmqService = require('../vendors/rabbitmq');
 const queues = require('../vendors/rabbitmq/queues');
 
-module.exports = RABBITMQ_SERVER => {
-
-    let rabbitmqChannel;
-    rabbitmqService.createChannel(RABBITMQ_SERVER, (err, channel) => {
-        if (err) {
-            throw err;
-        }
-        rabbitmqChannel = channel;
-    });
-
+module.exports = ({ rabbitmqChannel }) => {
 
     function convertVideoToArticle({ videoId, articleId }) {
         return rabbitmqChannel.sendToQueue(queues.CONVERT_VIDEO_TO_ARTICLE_QUEUE, new Buffer(JSON.stringify({ videoId, articleId })), { persistent: true });
