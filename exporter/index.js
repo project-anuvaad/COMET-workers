@@ -26,7 +26,7 @@ module.exports = ({ rabbitmqChannel }) => {
         return rabbitmqChannel.sendToQueue(queues.GENERATE_VIDEO_THUMBNAIL_QUEUE, new Buffer(JSON.stringify({ videoId })), { persistent: true });
     }
     function updateArticleSlideVideoSlice({ articleId, slidePosition, subslidePosition, startTime, endTime }) {
-        return rabbitmqChannel.sendToQueue(queues.UPDATE_ARTICLE_VIDEO_SPEED, new Buffer(JSON.stringify({ articleId, slidePosition, subslidePosition, startTime, endTime })), { persistent: true });
+        return rabbitmqChannel.sendToQueue(queues.UPDATE_ARTICLE_SLIDE_VIDEO_SLICE, new Buffer(JSON.stringify({ articleId, slidePosition, subslidePosition, startTime, endTime })), { persistent: true });
     }
     function updateArticleVideoSpeed({ articleId, videoSpeed }) {
         return rabbitmqChannel.sendToQueue(queues.UPDATE_ARTICLE_VIDEO_SPEED, new Buffer(JSON.stringify({ articleId, videoSpeed })), { persistent: true });
