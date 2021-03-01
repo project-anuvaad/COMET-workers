@@ -1,6 +1,6 @@
 {
-  "name": "@videowiki/workers",
-  "version": "2.0.3",
+  "name": "@comet-anuvaad/workers",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -12,5 +12,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hassan Amin",
-  "license": "ISC"
+  "license": "ISC",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project-anuvaad/COMET-workers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/project-anuvaad/COMET-workers/issues"
+  }
 }
