@@ -1,5 +1,5 @@
 {
-  "name": "@videowiki/workers",
+  "name": "@comet-anuvaad/workers",
   "version": "2.0.3",
   "description": "",
   "main": "index.js",
@@ -12,5 +12,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hassan Amin",
-  "license": "ISC"
+  "license": "ISC",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project-anuvaad/COMET-workers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/project-anuvaad/COMET-workers/issues"
+  }
 }
